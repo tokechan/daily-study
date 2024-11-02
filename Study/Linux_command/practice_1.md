@@ -1,8 +1,8 @@
-##Linux command control directory 
+#Linux command control directory 
 
-pwd   print working directory  
-mkdir make directory
-ls list
-cd change directory
-mv move directory
-rmdir remove directory
+1.pwd   print working directory  
+2.mkdir make directory
+3.ls list
+4.cd change directory
+5.mv move directory
+6.rmdir remove directory
