@@ -24,3 +24,6 @@ const 関数名 = async (引数) => {
 
 - asyncを使って定義するAsync Functionは非同期処理を行う関数を定義し、Promiseオブジェクトを返却する。
 - awaitはAsync Functionの中でのみ使用でき、Promiseオブジェクトを後ろに記述することで、そのPromise処理の結果を待って次の処理を実行できる。
+
+## 参考
+https://diver.diveintocode.jp/dive_into_course/dl_js/curriculums/2294
