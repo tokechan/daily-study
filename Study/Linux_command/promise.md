@@ -86,3 +86,119 @@ resolve()で終了したPromiseは、then()メソッドを使って処理を続�
 
 reject()関数は、非同期処理が失敗したときに呼び出されるコールバック関数です。
 reject()で終了したPromiseは、catch()メソッドを使って処理を続行することができます。
+
+### Promiseは関数に組み込める
+Promiseは関数に組み込むことができる。
+
+```
+function sleep() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve();
+        }, 3000);
+    });
+}
+``` 
+### Promiseチェーンで処理をつなげる
+then()メソッドをつなげて、処理を順番に行うこともできる。
+
+```
+function inputNumber(data) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof(data) == "number") {
+        resolve(data + 1);
+      } else {
+        reject("数字ではありません");
+      }
+    }, 3000);
+  })
+}
+
+console.log("処理を開始");
+inputNumber(1)
+.then(function(data){
+  console.log(data);
+  return inputNumber(data);
+})
+.then(function(data){
+  console.log(data);
+  return inputNumber(data)
+})
+.then(function(data){
+  console.log(data);
+})
+```
+
+### .複数の非同期処理を並列処理[Promise.all()]
+
+Promise.all()メソッドは、複数の非同期処理を並列して処理し、全ての処理が正常終了した場合にのみthen()メソッドにつなげることができます。
+
+function inputNumber(data) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof(data) == "number") {
+        console.log(data)
+        resolve(data);
+      } else {
+        console.log("数字ではありません")
+        reject("失敗しました");
+      }
+    }, 3000);
+  })
+}
+
+console.log("処理を開始");
+
+Promise.all([
+  inputNumber(2),
+  inputNumber(6),
+  inputNumber(5),
+])
+.then(function(){
+  console.log("全部成功しました");
+})
+.catch(function(error) {
+  console.log(error);
+})
+```
+ひとつでも失敗するとcatch()メソッドが呼ばれる
+
+
+(失敗する例)
+
+```
+function inputNumber(data) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof(data) == "number") {
+        console.log(data)
+        resolve(data);
+      } else {
+        console.log("数字ではありません")
+        reject("失敗しました");
+      }
+    },3000);
+  })
+}
+
+console.log("処理を開始");
+
+Promise.all([
+  inputNumber(2),
+  inputNumber("hello"), //数字以外を引数に渡す
+  inputNumber(5),
+])
+.then(function(){
+  console.log("全部成功しました");
+})
+.catch(function(error) {
+  console.log(error);
+})
+
+
+## まとめ
+- JavaScriptにはコードを記述順に処理していき、一つの処理が終わるまで次の処理を行わない同期処理と、処理の終了を待たずに次の処理を行う非同期処理がある
+- Promiseオブジェクトは非同期処理を実行し、その処理が終了するまで次の処理を遅延できる
+- resolve()関数はPromiseを正常終了させるコールバック関数であり、then()メソッドを使って次の処理に繋ぐことができる
+- reject()関数はPromiseをエラー終了させるコールバック関数であり、catch()メソッドを使ってエラー処理に繋ぐことができる
