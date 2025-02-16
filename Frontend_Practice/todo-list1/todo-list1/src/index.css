@@ -22,14 +22,15 @@ button:hover {
   cursor: pointer;
 }
 
-/* .input-area {
+.input-area {
+  text-align: center;
   background-color: #c6e5d9;
   width: 400px;
   height: 30px;
   padding: 8px;
   margin: 8px;
   border-radius: 8px;
-} */
+}
 
 .incomplete-area {
   border: 2px solid #aacfd0;
@@ -43,7 +44,7 @@ button:hover {
 .complete-area {
   border: 2px solid #aacfd0;
   width: 400px;
-  min-height: 200px;
+  height: 45px;
   padding: 8px;
   margin: 8px;
   border-radius: 8px;
