@@ -1,5 +1,7 @@
 import { useState } from "react"
-import "./index.css"
+import "../index.css"
+import { AddTodo } from "../components/AddTodo";
+import { TodoList } from "../components/TodoList";
 
 /**
  * Todoコンポーネント
@@ -37,20 +39,30 @@ export const Todo = () => {
     }
   };
 
+  const onClickDelete = (todoToDelete) => {
+    const newTodos = incompleteTodo.filter((todo) => todo !== todoToDelete);
+    setIncompleteTodo(newTodos);
+  }
+
   return (
     <>  
     <div className="complete-area">
       <h1 className="title">Todo App</h1>
     </div>
     <div className="input-area">
-      {/* <h2 className="title">Add Todo</h2> */}
-      <input placeholder="Enter your task here" value={todoText} onChange={onChangeTodoText} onKeyDown={onEnterPress} />
+      <AddTodo 
+        placeholder=""
+        todoText={todoText}
+        onChangeTodoText={onChangeTodoText}
+        onEnterPress={onEnterPress}
+      />
     </div>
     <div className="incomplete-area">
       <h2 className="title">Todo List</h2>
-      {incompleteTodo.map((todo) => (
-        <p className="todo-item" key={todo}>{todo}</p>
-      ))}
+      <TodoList 
+        incompleteTodo={incompleteTodo}
+        onClickDelete={onClickDelete} 
+      />
     </div>
     </>
   )
