@@ -1,10 +1,18 @@
 import { renderHook, act } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { useTodo } from './useTodo'
+import { TodoProvider } from '../contexts/TodoContext'
 
 describe('useTodo Custom Hook', () => {
+  //TodoProviderでラップしてテストする rapper function
+  const wrapper = ({ children }) => (
+    <TodoProvider>
+      {children}
+    </TodoProvider>
+  );
+
   it('初期状態が正しく設定されている', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper })
     
     // 初期状態の検証
     expect(result.current.todoText).toBe('')
@@ -14,7 +22,7 @@ describe('useTodo Custom Hook', () => {
 
   //Todo入力テスト
   it('text入力が正しく更新される', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper })
 
     act(() => {
       result.current.onChangeTodoText({ target: { value: 'test todo' } })   
@@ -25,7 +33,7 @@ describe('useTodo Custom Hook', () => {
 
   //Enterキー押下テスト
   it('Enterキー押下でTodoが追加される', () => {
-    const  { result } = renderHook(() => useTodo())
+    const  { result } = renderHook(() => useTodo(), { wrapper })
 
     act(() => {
       result.current.onChangeTodoText({ target: { value: 'test todo' } })
@@ -41,7 +49,7 @@ describe('useTodo Custom Hook', () => {
 
   //検索キーワード入力テスト
   it('検索キーワード入力が正しく更新される', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper }  )
     
     //1つ目のTodoを追加
     act(() => {
@@ -85,7 +93,7 @@ describe('useTodo Custom Hook', () => {
   }) 
 
   it('Todoが正しく削除される', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper }  )
     
     // Todoを追加
     act(() => {
@@ -104,7 +112,7 @@ describe('useTodo Custom Hook', () => {
   })
 
   it('空のTodoは追加されない', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper }  )
     
     act(() => {
       result.current.onChangeTodoText({ target: { value: '' } })
@@ -117,7 +125,7 @@ describe('useTodo Custom Hook', () => {
   })
 
   it('検索は大文字小文字を区別しない', () => {
-    const { result } = renderHook(() => useTodo())
+    const { result } = renderHook(() => useTodo(), { wrapper }  )
     
     // Todoを追加
     act(() => {
