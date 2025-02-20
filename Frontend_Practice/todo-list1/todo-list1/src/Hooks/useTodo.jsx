@@ -23,8 +23,8 @@ export const useTodo = () => {
    * @param {KeyboardEvent} e 
    */
   const onEnterPress = (e) => {
-    if (e.key === 'Enter') {
-      setIncompleteTodo([...incompleteTodo, todoText]);
+    if (e.key === 'Enter' && todoText.trim() !== '') {
+      setIncompleteTodo((prev) => [...prev, todoText]);
       setTodoText("");
     }
   };
