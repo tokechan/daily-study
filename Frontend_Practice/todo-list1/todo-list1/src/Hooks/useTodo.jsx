@@ -9,6 +9,7 @@ export const useTodo = () => {
   const { 
     todoText,
     incompleteTodo,
+    setIncompleteTodo,
     searchKeyword,
     filteredTodos,
     onChangeTodoText,
@@ -23,6 +24,7 @@ export const useTodo = () => {
     searchKeyword,
     filteredTodos,
     incompleteTodo,
+    setIncompleteTodo,
     // ハンドラー
     onChangeTodoText,
     onEnterPress,

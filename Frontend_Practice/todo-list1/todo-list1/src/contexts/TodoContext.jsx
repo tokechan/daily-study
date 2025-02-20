@@ -4,43 +4,31 @@ export const TodoContext = createContext(null);
 
 // Providerコンポーネントを作成
 export const TodoProvider = ({ children }) => {
-  const [todoText, setTodoText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  //Todo操作の関数
-  const onChangeTodoText = (e) => setTodoText(e.target.value)
-
-  const onEnterPress = (e) => {
-    if (e.key === 'Enter' && todoText.trim() !== '') {
-      setIncompleteTodo((prev) => [...prev, todoText])
-      setTodoText("")
-    }
-  }
-  
-  const onClickDelete = (todoToDelete) => {
-    const newTodos = incompleteTodo.filter((todo) => todo !== todoToDelete)
-    setIncompleteTodo(newTodos)
-  }
-
-  // 検索関連の関数を追加
+  // 検索関連の関数
   const onChangeInputValue = (e) => setSearchKeyword(e.target.value);
   
+  // Todo削除の関数
+  const onClickDelete = (todoToDelete) => {
+    const newTodos = incompleteTodo.filter((todo) => todo !== todoToDelete);
+    setIncompleteTodo(newTodos);
+  };
+
   // 検索結果の計算
   const filteredTodos = incompleteTodo.filter((todo) =>
     todo.toLowerCase().includes(searchKeyword.toLowerCase())
   );
 
   const value = {
-    todoText,
     incompleteTodo,
+    setIncompleteTodo,  // Todoの追加のために公開
     searchKeyword,
     filteredTodos,
-    onChangeTodoText,
-    onEnterPress,
-    onClickDelete,
     onChangeInputValue,
-  }
+    onClickDelete,
+  };
 
   return (
     <TodoContext.Provider value={value}>
