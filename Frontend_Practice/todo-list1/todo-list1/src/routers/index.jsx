@@ -5,7 +5,7 @@ import { TodoCreatePage } from '../pages/TodoCreatePage';
 import { TodoEditPage } from '../pages/TodoEditPage';
 import { Header } from '../components/Header';
 
-export const AppRoutes = () => {
+export const Router = () => {
   return (
     <>
       <Header />
