@@ -3,6 +3,7 @@ import { TodoListPage } from '../pages/TodoListPage';
 import { TodoDetailPage } from '../pages/TodoDetailPage';
 import { TodoCreatePage } from '../pages/TodoCreatePage';
 import { TodoEditPage } from '../pages/TodoEditPage';
+import { createBrowserRouter } from "react-router-dom";
 
 export const AppRoutes = () => {
   return (
@@ -16,3 +17,11 @@ export const AppRoutes = () => {
     </>
   );
 };
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <TodoListPage />,
+  },
+  // 他のルートもここに追加可能
+]);

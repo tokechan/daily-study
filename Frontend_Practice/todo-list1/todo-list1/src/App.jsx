@@ -1,3 +1,5 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routers";
 import { BrowserRouter } from "react-router-dom";
 import { TodoProvider } from "./contexts/TodoContext";
 import { AppRoutes } from "./routers";
@@ -11,3 +13,5 @@ export const App = () => {
         </TodoProvider>
     );
 };
+
+export default App;
