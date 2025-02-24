@@ -1,18 +1,16 @@
 // eslint-disable-next-line react/prop-types
 
-export const TodoList = (props) => {
-  const { incompleteTodo, onClickDelete } = props;
-
+export const TodoList = ({ todos, onClickDelete }) => {
   return (
     <>
-    {incompleteTodo.map((todo) => (
-      <div key={todo} className="todo-item">
-    <span className="todo-text">{todo}</span>
-    <button onClick={() => onClickDelete(todo)} className="delete-button">
-    ×
-    </button> 
-      </div>
-    ))}
+      {todos.map((todo) => (
+        <div key={todo.id} className="todo-item">
+          <span className="todo-text">{todo.title}</span>
+          <button onClick={() => onClickDelete(todo)} className="delete-button">
+            ×
+          </button>
+        </div>
+      ))}
     </>
   );
 };

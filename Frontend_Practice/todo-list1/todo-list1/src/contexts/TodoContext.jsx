@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from 'react'
 // Contextを作成
-export const TodoContext = createContext(null);
+export const TodoContext = createContext({});
 
 // Providerコンポーネントを作成
 export const TodoProvider = ({ children }) => {
-  const [incompleteTodo, setIncompleteTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
 
   // 検索関連の関数
@@ -12,22 +12,33 @@ export const TodoProvider = ({ children }) => {
   
   // Todo削除の関数
   const onClickDelete = (todoToDelete) => {
-    const newTodos = incompleteTodo.filter((todo) => todo !== todoToDelete);
-    setIncompleteTodo(newTodos);
+    const newTodos = todos.filter((todo) => todo.id !== todoToDelete.id);
+    setTodos(newTodos);
   };
 
   // 検索結果の計算
-  const filteredTodos = incompleteTodo.filter((todo) =>
-    todo.toLowerCase().includes(searchKeyword.toLowerCase())
+  const filteredTodos = todos.filter((todo) =>
+    todo.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
+  // Todoの作成
+  const createTodo = ({ title, content }) => {
+    const newTodo = {
+      id: Date.now(),
+      title,
+      content,
+      createdAt: new Date().toISOString(),
+    };
+    setTodos(prevTodos => [...prevTodos, newTodo]);
+  };
 
   const value = {
-    incompleteTodo,
-    setIncompleteTodo,  // Todoの追加のために公開
+    todos,
+    setTodos,
     searchKeyword,
     filteredTodos,
     onChangeInputValue,
     onClickDelete,
+    createTodo,
   };
 
   return (

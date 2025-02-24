@@ -6,6 +6,11 @@ import { TodoContext } from "../contexts/TodoContext";
  * @returns {Object} Todoの状態と操作関数
  */
 export const useTodo = () => {
+  const context = useContext(TodoContext);
+  if (!context) {
+    throw new Error('useTodo must be used within a TodoProvider');
+  }
+
   const { 
     todoText,
     incompleteTodo,
@@ -16,7 +21,9 @@ export const useTodo = () => {
     onEnterPress,
     onClickDelete,
     onChangeInputValue,
-  } = useContext(TodoContext);
+    todos,
+    createTodo,
+  } = context;
 
   return {
     // 状態
@@ -30,5 +37,7 @@ export const useTodo = () => {
     onEnterPress,
     onChangeInputValue,
     onClickDelete,
+    todos,
+    createTodo,
   };
 };
