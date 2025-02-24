@@ -1,0 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
+import { TodoProvider } from "./contexts/TodoContext";
+import { AppRoutes } from "./routers";
+
+export const App = () => {
+    return (
+        <TodoProvider>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </TodoProvider>
+    );
+};
