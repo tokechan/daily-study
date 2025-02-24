@@ -6,29 +6,32 @@ import { TodoContext } from "../contexts/TodoContext";
  * @returns {Object} Todoの状態と操作関数
  */
 export const useTodo = () => {
+  const context = useContext(TodoContext);
+  if (!context) {
+    throw new Error('useTodo must be used within a TodoProvider');
+  }
+
   const { 
-    todoText,
-    incompleteTodo,
-    setIncompleteTodo,
+    todos,
+    setTodos,
     searchKeyword,
     filteredTodos,
-    onChangeTodoText,
-    onEnterPress,
-    onClickDelete,
     onChangeInputValue,
-  } = useContext(TodoContext);
+    onClickDelete,
+    createTodo,
+    getTodoById,
+    updateTodo,
+  } = context;
 
   return {
-    // 状態
-    todoText,
+    todos,
+    setTodos,
     searchKeyword,
     filteredTodos,
-    incompleteTodo,
-    setIncompleteTodo,
-    // ハンドラー
-    onChangeTodoText,
-    onEnterPress,
     onChangeInputValue,
     onClickDelete,
+    createTodo,
+    getTodoById,
+    updateTodo,
   };
 };
