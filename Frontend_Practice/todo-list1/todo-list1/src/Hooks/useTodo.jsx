@@ -12,32 +12,26 @@ export const useTodo = () => {
   }
 
   const { 
-    todoText,
-    incompleteTodo,
-    setIncompleteTodo,
+    todos,
+    setTodos,
     searchKeyword,
     filteredTodos,
-    onChangeTodoText,
-    onEnterPress,
-    onClickDelete,
     onChangeInputValue,
-    todos,
+    onClickDelete,
     createTodo,
+    getTodoById,
+    updateTodo,
   } = context;
 
   return {
-    // 状態
-    todoText,
+    todos,
+    setTodos,
     searchKeyword,
     filteredTodos,
-    incompleteTodo,
-    setIncompleteTodo,
-    // ハンドラー
-    onChangeTodoText,
-    onEnterPress,
     onChangeInputValue,
     onClickDelete,
-    todos,
     createTodo,
+    getTodoById,
+    updateTodo,
   };
 };

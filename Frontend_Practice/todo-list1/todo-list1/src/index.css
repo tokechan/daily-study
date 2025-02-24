@@ -88,3 +88,84 @@ input {
   color: #ff6f61;
   border-color: #ff6f61;
 }
+
+.detail-area {
+  background-color: #c1ffff;
+  width: 400px;
+  min-height: 200px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.todo-detail {
+  padding: 16px;
+}
+
+.todo-content {
+  margin: 16px 0;
+  white-space: pre-wrap;
+}
+
+.todo-date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 8px;
+}
+
+.back-button,
+.edit-button {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.edit-button {
+  background-color: #ffc107;
+  color: black;
+}
+
+.header {
+  background-color: #c9dede;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #aacfd0;
+}
+
+.header-title {
+  margin: 0;
+  color: #666;
+  cursor: pointer;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.create-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #45a049;
+}
