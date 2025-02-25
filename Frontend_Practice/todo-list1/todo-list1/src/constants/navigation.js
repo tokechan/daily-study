@@ -7,7 +7,7 @@ export const BASE_PATH = "/";
 /**
  * リンク先一覧
 */
-export const NAVIGATION_LINKS = {
+export const NAVIGATION_LIST = {
   TOP: `${BASE_PATH}`,
   CREATE: `${BASE_PATH}create`,
   DETAIL: `${BASE_PATH}detail/:id`,
