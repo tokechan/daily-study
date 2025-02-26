@@ -1,8 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import { TodoListPage } from '../pages/TodoListPage';
-import { TodoDetailPage } from '../pages/TodoDetailPage';
-import { TodoCreatePage } from '../pages/TodoCreatePage';
-import { TodoEditPage } from '../pages/TodoEditPage';
+// import { TodoListPage } from '../components/pages/TodoListPage';
+// import { TodoDetailPage } from '../components/pages/TodoDetailPage';
+// import { TodoCreatePage } from '../components/pages/TodoCreatePage';
+// import { TodoEditPage } from '.../components/pages/TodoEditPage';
+import { 
+  TodoCreatePage,
+  TodoDetailPage,
+  TodoEditPage,
+  TodoListPage,
+} from "../pages";
 
 import { Header } from '../components/Header';
 import { NAVIGATION_LIST } from '../constants/navigation';

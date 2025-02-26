@@ -1,9 +1,9 @@
-import { useTodo } from '../../Hooks/useTodo';
-import { SearchTodo } from '../../components/SearchTodo';
-import { TodoList } from '../../components/TodoList';
-import '../../index.css';
+import { useTodo } from '../../../Hooks/useTodo';
+import { SearchTodo } from '../../organisms/SearchTodo';
+import '../../../index.css';
+import { TodoList } from '../../organisms/TodoList';
 
-export const TodoListPage = () => {
+export const TodoListTemplate = () => {
   const {
     searchKeyword,
     filteredTodos,

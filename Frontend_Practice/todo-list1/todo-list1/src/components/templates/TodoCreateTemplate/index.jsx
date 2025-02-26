@@ -1,35 +1,21 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useTodo } from '../../Hooks/useTodo';
-import { useFormValidation } from '../../Hooks/useFormValidation';
-import '../../index.css';
+import { useNavigate } from 'react-router-dom';
+import { useTodo } from '../../../Hooks/useTodo';
+import { useFormValidation } from '../../../Hooks/useFormValidation';
+import '../../../index.css';
 
-export const TodoEditPage = () => {
-  const { id } = useParams();
+export const TodoCreatePage = () => {
   const navigate = useNavigate();
-  const { getTodoById, updateTodo } = useTodo();
-  const todo = getTodoById(id);
-
+  const { createTodo } = useTodo();
   const {
     values,
     errors,
     setErrors,
     validateForm,
-    handleChange,
+    handleChange
   } = useFormValidation({
-    title: todo?.title || '',
-    content: todo?.content || '',
+    title: '',
+    content: ''
   });
-
-  if (!todo) {
-    return (
-      <div className="complete-area">
-        <h1 className="title">Todo not found</h1>
-        <button onClick={() => navigate('/')} className="back-button">
-          Back to List
-        </button>
-      </div>
-    );
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,24 +25,22 @@ export const TodoEditPage = () => {
     }
 
     try {
-      await updateTodo(id, {
+      await createTodo({
         title: values.title.trim(),
-        content: values.content.trim(),
+        content: values.content.trim()
       });
-      navigate(`/detail/${id}`);
+      navigate('/');
     } catch (error) {
       setErrors(prev => ({
         ...prev,
-        submit: 'Failed to update todo. Please try again.'
+        submit: 'Failed to create todo. Please try again.'
       }));
     }
   };
 
   return (
-    <>
-      <div className="complete-area">
-        <h1 className="title">Edit Todo</h1>
-      </div>
+    <div className="page-container">
+      <h1>Create Todo</h1>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="input-field">
@@ -85,17 +69,12 @@ export const TodoEditPage = () => {
               {values.content.length}/200
             </div>
           </div>
-          <div className="button-group">
-            <button type="button" onClick={() => navigate(`/detail/${id}`)} className="back-button">
-              Cancel
-            </button>
-            <button type="submit" className="submit-button">
-              Update
-            </button>
-          </div>
+          <button type="submit" className="submit-button">
+            Create
+          </button>
           {errors.submit && <div className="error-message submit-error">{errors.submit}</div>}
         </form>
       </div>
-    </>
+    </div>
   );
 };
