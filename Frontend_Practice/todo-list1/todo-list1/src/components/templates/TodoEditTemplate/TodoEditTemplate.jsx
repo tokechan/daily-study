@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTodo } from '../../../Hooks/useTodo';
 import { useFormValidation } from '../../../Hooks/useFormValidation';  
-import '../../../index.css';
-
+import '/src/index.css';
+  
 
 export const TodoEditTemplate = () => {
   const { id } = useParams();
