@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useTodo } from '../../Hooks/useTodo';
-import '../../index.css';
+import { useTodo } from '../../../Hooks/useTodo';
+import '../../../index.css';
 
-export const TodoDetailPage = () => {
+export const TodoDetailTemplate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getTodoById, todos } = useTodo();
