@@ -3,7 +3,8 @@ import { useTodo } from '../../../Hooks/useTodo';
 import { useFormValidation } from '../../../Hooks/useFormValidation';
 import '../../../index.css';
 
-export const TodoCreatePage = () => {
+
+export const TodoCreateTemplate = () => { 
   const navigate = useNavigate();
   const { createTodo } = useTodo();
   const {

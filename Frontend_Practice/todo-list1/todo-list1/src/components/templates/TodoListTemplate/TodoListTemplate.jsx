@@ -1,12 +1,12 @@
 import { useTodo } from '../../../Hooks/useTodo';
-import { SearchTodo } from '../../organisms/SearchTodo';
+import { SearchTodo } from '../../organisms/SearchTodo/SearchTodo';
 import '../../../index.css';
 import { TodoList } from '../../organisms/TodoList';
 
 export const TodoListTemplate = () => {
   const {
     searchKeyword,
-    filteredTodos,
+    filteredTodos,  
     onChangeInputValue,
     onClickDelete,
   } = useTodo();
@@ -32,4 +32,4 @@ export const TodoListTemplate = () => {
       </div>
     </>
   );
-};
+};      
